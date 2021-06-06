@@ -10,41 +10,41 @@ function Table(props){
     const dispatch = useDispatch();
     
     var element;
-    useEffect(()=>{
-        const hubConnection = new signalR.HubConnectionBuilder()
-        .withUrl(url.url + "/signalr")
-        .configureLogging(signalR.LogLevel.Information)  
-        .build();
-        hubConnection.on("message", message => {
-            var json = JSON.parse(message);
-            json = json[0];
-            var e = {
-                macp : json.MACP,
-                giaTC : json.GiaTC,
-                giaTran : json.GiaTran,
-                giaSan : json.GiaSan,
-                ktTong : json.KTTong,
-                giaMua3 : json.GiaMua3,
-                klMua3 : json.KLMua3,
-                giaMua2 : json.GiaMua2,
-                klMua2 : json.KLMua2,
-                giaMua1 : json.GiaMua1,
-                klMua1 : json.KLMua1,
-                gia : json.Gia,
-                kl : json.KL,
-                giaBan1 : json.GiaBan1,
-                klBan1 : json.KLBan1,
-                giaBan2 :json.GiaBan2,
-                klBan2  : json.KLBan2,
-                giaBan3 : json.GiaBan3,
-                klBan3 : json.KLBan3
-            }
-            console.log(e);
-            dispatch(Acction.fetchChangeList(e));
-        });
-        hubConnection.start();
-        //setState(!state);
-    },state)
+    // useEffect(()=>{
+    //     const hubConnection = new signalR.HubConnectionBuilder()
+    //     .withUrl(url.url + "/signalr")
+    //     .configureLogging(signalR.LogLevel.Information)  
+    //     .build();
+    //     hubConnection.on("message", message => {
+    //         var json = JSON.parse(message);
+    //         json = json[0];
+    //         var e = {
+    //             macp : json.MACP,
+    //             giaTC : json.GiaTC,
+    //             giaTran : json.GiaTran,
+    //             giaSan : json.GiaSan,
+    //             ktTong : json.KTTong,
+    //             giaMua3 : json.GiaMua3,
+    //             klMua3 : json.KLMua3,
+    //             giaMua2 : json.GiaMua2,
+    //             klMua2 : json.KLMua2,
+    //             giaMua1 : json.GiaMua1,
+    //             klMua1 : json.KLMua1,
+    //             gia : json.Gia,
+    //             kl : json.KL,
+    //             giaBan1 : json.GiaBan1,
+    //             klBan1 : json.KLBan1,
+    //             giaBan2 :json.GiaBan2,
+    //             klBan2  : json.KLBan2,
+    //             giaBan3 : json.GiaBan3,
+    //             klBan3 : json.KLBan3
+    //         }
+    //         console.log(e);
+    //         dispatch(Acction.fetchChangeList(e));
+    //     });
+    //     hubConnection.start();
+    //     //setState(!state);
+    // },state)
     useEffect(()=>{
         dispatch(Acction.fectchListAll());   
     },[]);

@@ -1,2 +1,2 @@
-const Origin = "http://localhost:17331"
+const Origin = "http://localhost:3000/lingting"
 export default Origin;
