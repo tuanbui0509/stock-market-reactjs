@@ -1,12 +1,11 @@
 import React, { useEffect ,useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as signalR from "@microsoft/signalr";
-import * as Acction from '../../actions/table/index'
-import TableItem from './TableItem'
-import * as url from '../../constants/baseurl/url';
-function Table(props){
+import * as action from '../../actions/LightningTable/index'
+import LightningTableItem from './LightningTableItem'
+function LightningTable(props){
     const [state, setState] = useState(true);
-    const StockList = useSelector(state =>state.StockList);
+    const LightningTableList = useSelector(state =>state.LightningTableList);
     const dispatch = useDispatch();
     
     var element;
@@ -40,16 +39,16 @@ function Table(props){
     //             klBan3 : json.KLBan3
     //         }
     //         console.log(e);
-    //         dispatch(Acction.fetchChangeList(e));
+    //         dispatch(action.fetchChangeList(e));
     //     });
     //     hubConnection.start();
     //     //setState(!state);
     // },state)
     useEffect(()=>{
-        dispatch(Acction.fectchListAll());   
+        dispatch(action.actFetchListStocksRequest());   
     },[]);
-    element = StockList.map((value ,index) =>{
-        return  <TableItem
+    element = LightningTableList.map((value ,index) =>{
+        return  <LightningTableItem
         key = {index}
         macp ={value.macp}
         giaTC ={value.giaTC}
@@ -70,7 +69,7 @@ function Table(props){
         klBan2 = {value.klBan2}
         giaBan3 = {value.giaBan3}
         klBan3 = {value.klBan3}
-        ></TableItem>
+        />
     })
     return(
         <main class="content-wp">
@@ -134,4 +133,4 @@ function Table(props){
     );
 
 }
-export default Table;
+export default LightningTable;

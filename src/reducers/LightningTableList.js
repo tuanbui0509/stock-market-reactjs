@@ -1,13 +1,13 @@
-import * as actionType from '../constants/table/index';
+import * as actionType from '../constants/LightningTable/ActionType';
 const initState = [];
 
 var myReducer = (state = initState , action)=>{
     switch(action.type){
-        case actionType.LIST_ALL :
+        case actionType.FETCH_STOCKS :
             state = action.data;
             console.log(state);
         return [...state];
-        case actionType.LIST_CHANGE :
+        case actionType.LIST_CHANGE_STOCKS :
             var element = action.data;
             var index = findIndex(state , element);
             state[index] = element;

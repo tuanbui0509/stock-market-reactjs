@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 // import { useHistory } from 'react-router';
 // import { useDispatch , useSelector} from 'react-redux';
 // import * as Acction from '../actions/table/index'
-import Header from '../components/common/Header'
-import Table from '../components/stock-table/Table'
-import Footer from '../components/stock-table/Footer'
-import  '../assets/js/main.js'
-import  '../assets/js/base.js'
+import Header from '../../components/Common/Header'
+import LightningTable from '../../components/HomePage/LightningTable'
+import Footer from '../../components/HomePage/Footer'
+import  '../../assets/js/main.js'
+import  '../../assets/js/base.js'
 
 function Home(props){
     
@@ -21,7 +21,7 @@ function Home(props){
         <div className="App">
             <div className="site-wrap">
                 <Header></Header>
-                <Table></Table>
+                <LightningTable></LightningTable>
                 <Footer></Footer>
             </div>
         </div>

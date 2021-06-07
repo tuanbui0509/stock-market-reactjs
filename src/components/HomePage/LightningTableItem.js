@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-function TableItem(props){
+function LightningTableItem(props){
     const {
         macp,
         giaTC,
@@ -44,4 +44,4 @@ function TableItem(props){
         </tr>
     );
 }
-export default TableItem;
+export default LightningTableItem;

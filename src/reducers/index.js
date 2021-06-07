@@ -1,7 +1,7 @@
 import {combineReducers} from 'redux';
-import StockList from './list';
+import LightningTableList from './LightningTableList';
 const myReducer = combineReducers({
-    StockList
+    LightningTableList
 });
 
 export default myReducer;
