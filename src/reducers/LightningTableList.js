@@ -1,29 +1,26 @@
-import * as actionType from '../constants/LightningTable/ActionType';
-const initState = [];
+import * as types from '../constants/LightningTable/ActionType';
+const initialState = [];
 
-var myReducer = (state = initState , action)=>{
-    switch(action.type){
-        case actionType.FETCH_STOCKS :
-            state = action.data;
-            console.log(state);
-        return [...state];
-        case actionType.LIST_CHANGE_STOCKS :
-            var element = action.data;
-            var index = findIndex(state , element);
+let myReducer = (state = initialState, action) => {
+    switch (action.type) {
+        case types.FETCH_STOCKS:
+            state = action.stocks;
+            return [...state];
+        case types.LIST_CHANGE_STOCKS:
+            let element = action.stocks;
+            let index = findIndex(state, element);
             state[index] = element;
-        return [...state]
-        default : return state
+            return [...state]
+        default: return state;
     }
-    
+
 }
 
-var findIndex = (state , element) =>{
-    
-    for(let  i = 0 ; i < state.length; i ++){
-        if(state[i].macp === element.macp){
-             return i;
-        }
+let findIndex = (stocks, element) => {
+    let result = -1;
+    for (let i = 0; i < stocks.length; i++) {
+        if (stocks[i].macp === element.macp) { result = i; break; }
     }
-    return -1;
+    return result;
 }
 export default myReducer;

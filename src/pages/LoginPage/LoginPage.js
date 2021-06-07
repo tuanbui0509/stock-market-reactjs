@@ -1,14 +1,11 @@
 import React from 'react';
 
-
-function Footer(props) {
+const LoginPage = () => {
     return (
         <div>
-
+            
         </div>
     );
-
 }
 
-
-export default Footer;
+export default LoginPage;

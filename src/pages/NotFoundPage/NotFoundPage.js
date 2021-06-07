@@ -1,14 +1,11 @@
 import React from 'react';
 
-
-function Footer(props) {
+const NotFoundPage = () => {
     return (
         <div>
-
+            
         </div>
     );
-
 }
 
-
-export default Footer;
+export default NotFoundPage;
