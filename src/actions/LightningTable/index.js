@@ -2,15 +2,15 @@ import * as types from '../../constants/LightningTable/ActionType';
 import callApi from '../../utils/apiCaller';
 
 // FETCH ALL STOCKS
-export const actFetchListStocksRequest = () => {
+export const FetchListStocksRequest = () => {
     return (dispatch) => {
         return callApi('lightning', 'GET', null).then(res => {
-            dispatch(actFetchListStocks(res.data));
+            dispatch(FetchListStocks(res.data));
         })
     }
 }
 
-export const actFetchListStocks = (stocks) => {
+export const FetchListStocks = (stocks) => {
     return {
         type: types.FETCH_STOCKS,
         stocks
@@ -18,7 +18,7 @@ export const actFetchListStocks = (stocks) => {
 }
 
 // FETCH CHANGE STOCKS
-export const actFetchChangeListStocks = (stocks) => {
+export const FetchChangeListStocks = (stocks) => {
     return {
         type: types.LIST_CHANGE_STOCKS,
         stocks
@@ -27,15 +27,15 @@ export const actFetchChangeListStocks = (stocks) => {
 
 // FETCH GET 1 STOCK
 
-const actOrderStockRequest = id => {
+const OrderStockRequest = id => {
     return dispatch => {
         return callApi(`lightning/${id}`, 'GET', null).then(res => {
-            dispatch(actGetStock(res.data));
+            dispatch(GetStock(res.data));
         })
     }
 }
 
-const actGetStock = stock => {
+const GetStock = stock => {
     return {
         type: types.ORDER_STOCKS,
         stock

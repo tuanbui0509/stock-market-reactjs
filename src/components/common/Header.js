@@ -11,9 +11,6 @@ import halfmoon from '../../assets/images/half-moon.png';
 import control from '../../assets/images/controls.png';
 import userlogo from '../../assets/images/user.png';
 import user2logo from '../../assets/images/user2.png';
-// import '../../assets/css/base.css'
-// import '../../assets/css/reset.css'
-// import '../../assets/css/style.css'
 function Header(props) {
     const token = JSON.parse(localStorage.getItem("token"));
     const user = useSelector(state => state.User)

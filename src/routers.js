@@ -5,22 +5,22 @@ import LoginPage from './pages/LoginPage/LoginPage'
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage'
 const routers = [
     {
-        path:'/',
-        exact:true,
-        main:()=><HomePage/>
+        path: '/',
+        exact: true,
+        main: () => <HomePage />
     },
     {
-        path:'/login',
-        exact:false,
-        main:()=><LoginPage/>
+        path: '/login',
+        exact: false,
+        main: () => <LoginPage />
     },
     {
-        path:'',
-        exact:false,
-        main:()=><NotFoundPage/>
+        path: '',
+        exact: false,
+        main: () => <NotFoundPage />
     }
 
 ]
 
-export default routers
+export default routers;
 

@@ -5,10 +5,10 @@ import React, { useEffect, useState } from 'react';
 import Header from '../../components/Common/Header'
 import LightningTable from '../../components/HomePage/LightningTable'
 import Footer from '../../components/HomePage/Footer'
-import  '../../assets/js/main.js'
-import  '../../assets/js/base.js'
+import OrderForm from '../../components/HomePage/FormItem/OrderForm';
+import ConfirmForm from '../../components/HomePage/FormItem/ConfirmForm';
 
-function Home(props){
+function HomePage(props){
     
     //const history = useHistory();
     // const StockList = useSelector(state => state.StockList)
@@ -19,14 +19,15 @@ function Home(props){
     
     return (
         <div className="App">
-            <div className="site-wrap">
                 <Header></Header>
                 <LightningTable></LightningTable>
                 <Footer></Footer>
-            </div>
+                <OrderForm/>
+                <ConfirmForm/>
         </div>
     );
 
 }
 
-export default Home;
+export default HomePage;
+
