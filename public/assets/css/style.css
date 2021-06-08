@@ -210,6 +210,13 @@ table.table-price tr .symbol:hover {
 .txt-floor {
     color: var(--color-floor);
 }
+.txt-red {
+    color: rgb(255, 0, 23);
+}
+
+.txt-green {
+    color: rgb(11, 223, 57);
+}
 
 .txt-floor, .txt-magenta {
     color: var(--color-floor);

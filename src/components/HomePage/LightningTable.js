@@ -1,51 +1,95 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect,useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as signalR from "@microsoft/signalr";
-import * as action from '../../actions/LightningTable/index'
+import * as actionList from '../../actions/LightningTable/index'
+import * as actionState from '../../actions/LightningTableState/index'
+import * as Config from '../../constants/Config'
 import LightningTableItem from './LightningTableItem'
 function LightningTable(props) {
-    const [state, setState] = useState(true);
+    const LightningTableState = useSelector(state => state.LightningTableState);
     const LightningTableList = useSelector(state => state.LightningTableList);
+    const [count, setCount] = useState(-1);
+    //let dumpList = LightningTableState.List;
+    const User = useSelector(state => state.User);
+    //console.log(User);
     const dispatch = useDispatch();
 
-    // useEffect(()=>{
-    //     const hubConnection = new signalR.HubConnectionBuilder()
-    //     .withUrl(url.url + "/signalr")
-    //     .configureLogging(signalR.LogLevel.Information)  
-    //     .build();
-    //     hubConnection.on("message", message => {
-    //         let json = JSON.parse(message);
-    //         json = json[0];
-    //         let e = {
-    //             macp : json.MACP,
-    //             giaTC : json.GiaTC,
-    //             giaTran : json.GiaTran,
-    //             giaSan : json.GiaSan,
-    //             ktTong : json.KTTong,
-    //             giaMua3 : json.GiaMua3,
-    //             klMua3 : json.KLMua3,
-    //             giaMua2 : json.GiaMua2,
-    //             klMua2 : json.KLMua2,
-    //             giaMua1 : json.GiaMua1,
-    //             klMua1 : json.KLMua1,
-    //             gia : json.Gia,
-    //             kl : json.KL,
-    //             giaBan1 : json.GiaBan1,
-    //             klBan1 : json.KLBan1,
-    //             giaBan2 :json.GiaBan2,
-    //             klBan2  : json.KLBan2,
-    //             giaBan3 : json.GiaBan3,
-    //             klBan3 : json.KLBan3
-    //         }
-    //         console.log(e);
-    //         dispatch(action.fetchChangeList(e));
-    //     });
-    //     hubConnection.start();
-    //     //setState(!state);
-    // },state)
+    useEffect(()=>{
+        const hubConnection = new signalR.HubConnectionBuilder()
+        .withUrl(Config.BASE_URL + "/signalr")
+        .configureLogging(signalR.LogLevel.Information)  
+        .build();
+        hubConnection.on("message", message => {
+            let json = JSON.parse(message);
+            json = json[0];
+            let e = {
+                macp : json.MACP,
+                giaTC : json.GiaTC,
+                giaTran : json.GiaTran,
+                giaSan : json.GiaSan,
+                ktTong : json.KTTong,
+                giaMua3 : json.GiaMua3,
+                klMua3 : json.KLMua3,
+                giaMua2 : json.GiaMua2,
+                klMua2 : json.KLMua2,
+                giaMua1 : json.GiaMua1,
+                klMua1 : json.KLMua1,
+                gia : json.Gia,
+                kl : json.KL,
+                giaBan1 : json.GiaBan1,
+                klBan1 : json.KLBan1,
+                giaBan2 :json.GiaBan2,
+                klBan2  : json.KLBan2,
+                giaBan3 : json.GiaBan3,
+                klBan3 : json.KLBan3
+            }
+            console.log(e);
+            dispatch(actionList.FetchChangeListStocks(e));
+        });
+        hubConnection.start();
+    },[])
     useEffect(() => {
-        dispatch(action.FetchListStocksRequest());
-    }, []);
+        dispatch(actionState.FetchListStatesRequest(1))
+        //setCount(1);
+        //dispatch(actionState.ChangeListStates(index));
+    }, [User]);
+
+    useEffect(() => {
+        //console.log(LightningTableState);
+        if(LightningTableState.selected !== -1){
+            console.log(LightningTableState);
+            if(User !== null && LightningTableState.List[LightningTableState.selected].maSan.trim() ==='FAV'){
+                dispatch(actionList.FetchListStocksFaRequest(User.mandt));
+                console.log("firing");
+            }else{
+                dispatch(actionList.FetchListStocksRequest(LightningTableState.List[LightningTableState.selected].maSan));     
+            }
+        } 
+    }, [LightningTableState.selected]);
+
+    const ClickOnState = (index,value)=>{
+        return ()=>{
+            dispatch(actionState.ChangeListStates(index));
+            setCount(index);
+            //console.log(count);
+            //LightningTableState.selected = index;
+        }
+    }
+    const selected = (index)=>{
+        if(LightningTableState.selected === index)
+        return "content__tab-pill--active ";
+        else
+        return "";
+    }
+    let stateList = "";
+    if(LightningTableState.selected !== -1){
+        stateList = LightningTableState.List.map((value, index) => {
+            let inside = <div className={selected(index)+"content__tab-pill"} onClick={ClickOnState(index,value.maSan)}>
+                <div className="content__tab-title">{value.maSan.trim()}</div>
+                </div>
+            return inside;
+        })
+    }  
 
     let element = LightningTableList.map((value, index) => {
         return <LightningTableItem
@@ -69,7 +113,7 @@ function LightningTable(props) {
             klBan2={value.klBan2}
             giaBan3={value.giaBan3}
             klBan3={value.klBan3}
-             />
+            />
     })
     return (
         <main class="content-wp">
@@ -78,12 +122,7 @@ function LightningTable(props) {
                     <input type="text" placeholder="Nhập mã CK ..." className="content__search-input" />
                     <i className=" content__search-icon fas fa-search" />
                 </div>
-                <div className="content__tab-pill content__tab-pill--active" onclick="openCity(event, 'HCM')">
-                    <div className="content__tab-title">HCM</div>
-                </div>
-                <div className="content__tab-pill" onclick="openCity(event, 'HNX')">
-                    <div className="content__tab-title">HNX</div>
-                </div>
+                {stateList}
             </section>
             <section className="table-light-wp">
                 <table className="table-light__header">

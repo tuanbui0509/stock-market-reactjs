@@ -2,9 +2,9 @@ import * as types from '../../constants/LightningTable/ActionType';
 import callApi from '../../utils/apiCaller';
 
 // FETCH ALL STOCKS
-export const FetchListStocksRequest = () => {
+export const FetchListStocksRequest = (index) => {
     return (dispatch) => {
-        return callApi('lightning', 'GET', null).then(res => {
+        return callApi('lightning/'+index, 'GET', null).then(res => {
             dispatch(FetchListStocks(res.data));
         })
     }
@@ -16,7 +16,13 @@ export const FetchListStocks = (stocks) => {
         stocks
     }
 }
-
+export const FetchListStocksFaRequest = (MANDT) => {
+    return (dispatch) => {
+        return callApi('favouritestock/'+MANDT, 'GET', null).then(res => {
+            dispatch(FetchListStocks(res.data));
+        })
+    }
+}
 // FETCH CHANGE STOCKS
 export const FetchChangeListStocks = (stocks) => {
     return {
