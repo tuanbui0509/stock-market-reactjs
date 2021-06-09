@@ -1,6 +1,18 @@
 import React from 'react';
 
 const ConfirmForm = () => {
+    let closeFormConfirm = () => {
+        let my_modal = document.getElementById('confirm-modal');
+        console.log(my_modal)
+        my_modal.style.visibility = 'hidden';
+        my_modal.style.opacity = 0;
+    }
+    let acceptFormConfirm = () => {
+        let my_modal = document.getElementById('confirm-modal');
+        console.log(my_modal)
+        my_modal.style.visibility = 'hidden';
+        my_modal.style.opacity = 0;
+    }
     return (
         <section id="confirm-modal" className="modal">
             <div className="confirm-modal">
@@ -32,8 +44,8 @@ const ConfirmForm = () => {
                         </div>
                     </div>
                     <div className="modal-btn">
-                        <button type="button" className="btn-default btn-close" onclick="closeFormConfirm()">Đóng</button>
-                        <button type="button" className="btn-default btn-confirm">Xác nhận</button>
+                        <button type="button" className="btn-default btn-close" onClick={closeFormConfirm}>Đóng</button>
+                        <button type="button" className="btn-default btn-confirm" onClick={acceptFormConfirm}>Xác nhận</button>
                     </div>
                 </form>
             </div>

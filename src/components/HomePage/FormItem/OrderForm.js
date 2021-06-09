@@ -1,12 +1,27 @@
 import React from 'react';
 
 const OrderForm = () => {
+    let closeForm = () => {
+        let my_modal = document.getElementById('my-modal');
+        console.log(my_modal)
+        my_modal.style.visibility = 'hidden';
+        my_modal.style.opacity = 0;
+    }
+
+    let confirmForm = () => {
+        let my_modal = document.getElementById('confirm-modal');
+        console.log(my_modal)
+        my_modal.style.visibility = 'visible';
+        my_modal.style.opacity = 1;
+    }
+
+   
     return (
         <section id="my-modal" className="modal fade">
             <div className="modal-dialog">
                 <div className="modal-header">
                     <h5 className="modal-header__title">Đặt lệnh</h5>
-                    <i className="far fa-times-circle  modal-header__icon-close" onclick="closeForm()" />
+                    <i className="far fa-times-circle  modal-header__icon-close" onClick={closeForm} />
                 </div>
                 <div className="modal-content">
                     <div className="modal-body">
@@ -34,8 +49,8 @@ const OrderForm = () => {
                                 </div>
                             </div>
                             <div className="form-submit">
-                                <button type="button" onclick="confirmForm()" className="btn btn--green">MUA</button>
-                                <button type="button" className="btn btn--red">BÁN</button>
+                                <button type="button" onClick={confirmForm} className="btn btn--green">MUA</button>
+                                <button type="button"  onClick={confirmForm} className="btn btn--red">BÁN</button>
                             </div>
                         </form>
                     </div>

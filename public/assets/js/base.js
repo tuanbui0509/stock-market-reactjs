@@ -1,4 +1,4 @@
-showMenuLanguage = () => {
+const showMenuLanguage = () => {
     let menuLanguages = document.querySelector('.header__right-language-list');
     let menuThemes = document.querySelector('.header__right-theme-list');
     let menuAccounts = document.querySelector('.header__right-account-list');

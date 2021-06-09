@@ -1,4 +1,4 @@
-showError = (id) => {
+let showError = (id) => {
     let username = document.getElementById('username');
     let password = document.getElementById('password');
     let userNotify = document.getElementById('userLogin');

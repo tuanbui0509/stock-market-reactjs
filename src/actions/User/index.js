@@ -15,17 +15,17 @@ export const GetUserFromLocal = (user) => {
     }
 }
 
-export const UserLoginRequest = (username,password,history) => {
+export const UserLoginRequest = (username, password, history) => {
     return (dispatch) => {
-        console.log('login/'+username+'/'+password);
-        return callApi('login/'+username+'/'+password, 'GET',null).then(res => {
+        console.log('login/' + username + '/' + password);
+        return callApi('login/' + username + '/' + password, 'GET', null).then(res => {
             let rec = res.data;
-            console.log(rec);   
-            if(rec.result===0){
+            console.log(rec);
+            if (rec.result === 0) {
                 dispatch(UserLogin(rec.data));
                 localStorage.setItem("token", JSON.stringify(rec.data));
                 history.replace("/");
-            }else{
+            } else {
                 alert(rec.message);
             }
         })

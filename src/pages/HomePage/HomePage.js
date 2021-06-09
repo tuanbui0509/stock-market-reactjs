@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 // import { useHistory } from 'react-router';
 // import { useDispatch , useSelector} from 'react-redux';
- import * as Acction from '../../actions/User/index'
-import Header from '../../components/Common/Header'
-import LightningTable from '../../components/HomePage/LightningTable'
-import Footer from '../../components/HomePage/Footer'
-import OrderForm from '../../components/HomePage/FormItem/OrderForm';
-import ConfirmForm from '../../components/HomePage/FormItem/ConfirmForm';
-import { useDispatch, useSelector } from 'react-redux';
+import * as Acction from '../../actions/User/index';
+import Header from '../../components/Common/Header';
+import Footer from '../../components/HomePage/Footer';
+import LightningTable from '../../components/HomePage/LightningTable';
 
 function HomePage(props){
     
@@ -32,8 +30,7 @@ function HomePage(props){
                 <Header></Header>
                 <LightningTable></LightningTable>
                 <Footer></Footer>
-                <OrderForm/>
-                <ConfirmForm/>
+              
         </div>
     );
 
