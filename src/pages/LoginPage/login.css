@@ -144,17 +144,17 @@ header.header__login .header__logo-login {
     background-color: black;
 } */
 
- form {
+.main form {
     display: flex;
     flex-direction: column;
 }
- input {
+.main input {
     width: 300px;
     padding: 8px 30px;
     margin-bottom: 15px;
     border: #fff;
     outline: none;
-    border-radius: 3px;
+    border-radius: 5px;
 }
 
 .username, .password {
