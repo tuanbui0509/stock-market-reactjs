@@ -121,16 +121,12 @@ function LightningTable(props) {
 
     let showModalMatching = () => {
         let my_modal = document.getElementById('my-modal');
-        console.log(my_modal)
         my_modal.style.visibility = 'visible';
         my_modal.style.opacity = 1;
     }
 
-    
     return (
         <div>
-
-
             <main class="content-wp">
                 <section className="content">
                     <div className="content__search">
@@ -245,7 +241,7 @@ function LightningTable(props) {
                 </section>
             </main>
             <OrderForm />
-            <ConfirmForm />
+
         </div>
     );
 

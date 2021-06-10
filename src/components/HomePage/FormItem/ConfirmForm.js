@@ -1,9 +1,10 @@
 import React from 'react';
 
-const ConfirmForm = () => {
+const ConfirmForm = (props) => {
+    // let {order} = props.confirmInfoDetailOrder;
+    let { idAcc, stockId, price, weight, pin } = props.confirmOrder;
     let closeFormConfirm = () => {
         let my_modal = document.getElementById('confirm-modal');
-        console.log(my_modal)
         my_modal.style.visibility = 'hidden';
         my_modal.style.opacity = 0;
     }
@@ -27,25 +28,25 @@ const ConfirmForm = () => {
                         <div className="modal-info-detail">
                             <div className="modal-info-item">
                                 <p className="modal-info-label">Mã CK:</p>
-                                <strong className="modal-info-value">BHD</strong>
+                                <strong className="modal-info-value">{stockId}</strong>
                             </div>
                             <div className="modal-info-item">
                                 <p className="modal-info-label">Khối lượng:</p>
-                                <strong className="modal-info-value">10</strong>
+                                <strong className="modal-info-value">{weight}</strong>
                             </div>
                             <div className="modal-info-item">
                                 <p className="modal-info-label">Giá đặt:</p>
-                                <strong className="modal-info-value">100.000</strong>
+                                <strong className="modal-info-value">{price}</strong>
                             </div>
                             <div className="modal-info-item">
                                 <p className="modal-info-label">Tài khoản:</p>
-                                <strong className="modal-info-value color-red">1000201</strong>
+                                <strong className="modal-info-value color-red">{idAcc}</strong>
                             </div>
                         </div>
                     </div>
                     <div className="modal-btn">
-                        <button type="button" className="btn-default btn-close" onClick={closeFormConfirm}>Đóng</button>
-                        <button type="button" className="btn-default btn-confirm" onClick={acceptFormConfirm}>Xác nhận</button>
+                        <button className="btn-default btn-close" onClick={closeFormConfirm}>Đóng</button>
+                        <button className="btn-default btn-confirm" onClick={acceptFormConfirm}>Xác nhận</button>
                     </div>
                 </form>
             </div>
