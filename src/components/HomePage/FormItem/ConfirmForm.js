@@ -2,11 +2,14 @@ import React from 'react';
 
 const ConfirmForm = (props) => {
     // let {order} = props.confirmInfoDetailOrder;
-    let { idAcc, stockId, price, weight, pin } = props.confirmOrder;
-    let closeFormConfirm = () => {
+    let { idAcc, stockId, price, weight, pin,selectedStatus } = props.confirmOrder;
+    // let {state} = props.state; 
+    let closeFormConfirm = (e) => {
+        e.preventDefault();
         let my_modal = document.getElementById('confirm-modal');
         my_modal.style.visibility = 'hidden';
         my_modal.style.opacity = 0;
+
     }
     let acceptFormConfirm = () => {
         let my_modal = document.getElementById('confirm-modal');
@@ -23,7 +26,7 @@ const ConfirmForm = (props) => {
                 </div>
                 <form className="modal-content-info">
                     <div className="modal-info">
-                        <p className="modal-info-title">Quý khách có thật sự muốn đặt lệnh <span className="color-green">Mua</span>
+                        <p className="modal-info-title">Quý khách có thật sự muốn đặt lệnh <span className={selectedStatus?"color-green":"color-red"}>{selectedStatus?'Mua':'Bán'}</span>
                         </p>
                         <div className="modal-info-detail">
                             <div className="modal-info-item">

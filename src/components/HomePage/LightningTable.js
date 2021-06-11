@@ -59,7 +59,6 @@ function LightningTable(props) {
     useEffect(() => {
         //console.log(LightningTableState);
         if (LightningTableState.selected !== -1) {
-            console.log(LightningTableState);
             if (User !== null && LightningTableState.List[LightningTableState.selected].maSan.trim() === 'FAV') {
                 dispatch(actionList.FetchListStocksFaRequest(User.mandt));
                 console.log("firing");
@@ -86,7 +85,7 @@ function LightningTable(props) {
     let stateList = "";
     if (LightningTableState.selected !== -1) {
         stateList = LightningTableState.List.map((value, index) => {
-            let inside = <div className={selected(index) + "content__tab-pill"} onClick={ClickOnState(index, value.maSan)}>
+            let inside = <div key={index} className={selected(index) + "content__tab-pill"} onClick={ClickOnState(index, value.maSan)}>
                 <div className="content__tab-title">{value.maSan.trim()}</div>
             </div>
             return inside;
