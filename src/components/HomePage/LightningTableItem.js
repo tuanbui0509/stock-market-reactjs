@@ -52,6 +52,7 @@ function LightningTableItem(props){
                 <td className={ClassNameRender(giaTran,giaSan,giaTC,giaBan2)}>{klBan2}</td>
                 <td className={ClassNameRender(giaTran,giaSan,giaTC,giaBan3)}>{giaBan3}</td>
                 <td className={ClassNameRender(giaTran,giaSan,giaTC,giaBan3)}>{klBan3}</td>
+                <td className={ClassNameRender(giaTran,giaSan,giaTC,giaBan3)}>123.444</td>
             </tr>
         );
 }

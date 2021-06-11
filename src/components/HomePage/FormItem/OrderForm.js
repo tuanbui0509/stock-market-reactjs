@@ -4,7 +4,7 @@ import { useHistory } from 'react-router';
 import ConfirmForm from './ConfirmForm';
 
 const OrderForm = (props) => {
-
+   
     const [order, setOrder] = useState({
         idAcc: "",
         stockId: "",
@@ -13,14 +13,24 @@ const OrderForm = (props) => {
         pin: "",
         selectedStatus: true// Trạng thái mua bán mua: true, bán: false
     });
-
     const dispatch = useDispatch();
     const history = useHistory();
     let closeForm = () => {
         let my_modal = document.getElementById('my-modal');
         my_modal.style.visibility = 'hidden';
         my_modal.style.opacity = 0;
+        setOrder({
+            idAcc: "",
+            stockId: "",
+            price: "",
+            weight: "",
+            pin: "",
+            selectedStatus: true
+        })
+       
     }
+
+   
 
     let searchListAcc = () => {
         let input, list;
@@ -157,6 +167,7 @@ const OrderForm = (props) => {
         })
         console.log(order);
     }
+
 
     const onBlur = () => {
         // let listStock = document.getElementById("listStock");

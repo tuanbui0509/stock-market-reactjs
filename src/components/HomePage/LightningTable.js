@@ -10,7 +10,10 @@ import ConfirmForm from './FormItem/ConfirmForm';
 function LightningTable(props) {
     const LightningTableState = useSelector(state => state.LightningTableState);
     const LightningTableList = useSelector(state => state.LightningTableList);
+    const [isShow, setIsShow] = useState(false);
     const [count, setCount] = useState(-1);
+    const [stocks, setStocks] = useState([]);
+    const [keyWord, setKeyWord] = useState('');
     //let dumpList = LightningTableState.List;
     const User = useSelector(state => state.User);
     //console.log(User);
@@ -124,13 +127,46 @@ function LightningTable(props) {
         my_modal.style.opacity = 1;
     }
 
+    let onSearchStock = (e) => {
+        const target = e.target;
+        const value = target.value;
+        setKeyWord(value);
+        let result = null;
+        if (LightningTableList.length > 0) {
+            result = LightningTableList.filter((stock) => {
+                console.log(stock.macp.trim().toLowerCase());
+                return stock.macp.trim().toLowerCase().indexOf(value) !== -1;
+            });
+        }
+        setStocks(result)
+        // console.log(LightningTableList);
+        // console.log(result);
+        // console.log(stocks);
+    }
     return (
         <div>
             <main class="content-wp">
                 <section className="content">
                     <div className="content__search">
-                        <input type="text" placeholder="Nhập mã CK ..." className="content__search-input" />
+                        <input
+                            type="text"
+                            placeholder="Nhập mã CK ..."
+                            className="content__search-input"
+                            name='keyWord'
+                            value={keyWord}
+                            onChange={onSearchStock}
+                        />
                         <i className=" content__search-icon fas fa-search" />
+
+                        <div className="wp-list-stock">
+                            <ul className="list-stock">
+                                <li className="stock-item"><span>
+                                    ABC <br />  <br /> Công ty Cổ phần Mĩ thuật và Truyền thông
+                                </span>
+                                </li>
+
+                            </ul>
+                        </div>
                     </div>
                     {stateList}
                 </section>
@@ -140,25 +176,28 @@ function LightningTable(props) {
                             <tr className="table-light__header-first">
                                 <th rowSpan={2}>
                                     CK
-                        </th>
+                                </th>
                                 <th rowSpan={2}>
                                     Trần
-                        </th>
+                                </th>
                                 <th rowSpan={2}>
                                     Sàn
-                        </th>
+                                </th>
                                 <th rowSpan={2}>
                                     TC
-                        </th>
+                                </th>
                                 <th rowSpan={1} colSpan={6}>
                                     Bên mua
-                        </th>
+                                </th>
                                 <th rowSpan={1} colSpan={2}>
                                     Khớp lệnh
-                        </th>
+                                </th>
                                 <th rowSpan={1} colSpan={6}>
                                     Bên bán
-                        </th>
+                                </th>
+                                <th rowSpan={2}>
+                                    Tổng KL
+                                </th>
                             </tr>
                             <tr className="table-light__header-second">
                                 <th>Giá 3</th>
@@ -184,57 +223,13 @@ function LightningTable(props) {
                                 {element}
                             </tbody>
                         </table>
-                        <table className="table-light__content" id="HNX">
-                            <tbody className="line-stocks">
-                                {/* 1 stock */}
-                                <tr className="stock" id="BID" ondblclick="showModalMatching()">
-                                    <td className="stockID" data-tooltip="Ngân hàng Thương mại Cổ phần Đầu tư và Phát triển Việt Nam ">
-                                        AAA</td>
-                                    <td className="special txt-floor">50.7</td>
-                                    <td className="special txt-ceil">44.1</td>
-                                    <td className="special txt-standard">47.4</td>
-                                    <td className>48.7</td>
-                                    <td className>70,100</td>
-                                    <td className>48.75</td>
-                                    <td className>5,300</td>
-                                    <td className>48.8</td>
-                                    <td className>17,500</td>
-                                    <td className="special">48.8</td>
-                                    <td className="special">15,000</td>
-                                    <td className>48.9</td>
-                                    <td className>14,500</td>
-                                    <td className>48.95</td>
-                                    <td className>14,500</td>
-                                    <td className>49</td>
-                                    <td className>14,500</td>
-                                </tr>
-                                <tr className="stock" id="VJC">
-                                    <td className="stockID" data-tooltip="Công ty công nghệ VJC">BBB</td>
-                                    <td className="special txt-floor">114</td>
-                                    <td className="special txt-ceil">99.2</td>
-                                    <td className="special txt-standard">106.6</td>
-                                    <td className>99.2</td>
-                                    <td className>1,100</td>
-                                    <td className>106.5</td>
-                                    <td className>5,300</td>
-                                    <td className>106.7</td>
-                                    <td className>17,500</td>
-                                    <td className="special">106.9</td>
-                                    <td className="special">15,000</td>
-                                    <td className>106.9</td>
-                                    <td className>14,500</td>
-                                    <td className>107</td>
-                                    <td className>14,500</td>
-                                    <td className>107.1</td>
-                                    <td className>14,500</td>
-                                </tr>
-                            </tbody>
-                        </table>
                     </div>
-
-
                 </section>
-                <section class="order-matching" onClick={showModalMatching}>
+                <section 
+                class="order-matching" 
+                onClick={showModalMatching}
+                // showForm={showForm}
+                >
                     <i class="fas fa-cart-plus"></i>
                     <span>Đặt lệnh</span>
                 </section>
